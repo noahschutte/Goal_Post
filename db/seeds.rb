@@ -87,7 +87,7 @@ end
 
 generate_comments_for_each_question_from_user(rand_num, extract_question_ids)
 
-# 2-4 comments on other users' answers from each user
+# 2-4 answers on other users' questions from each user
 
 def extract_user_ids
   User.all.map do |user|
@@ -113,3 +113,24 @@ def generate_answers_for_other_user(num_of_answers, questions, users)
 end
 
 generate_answers_for_other_user(rand_num, extract_question_ids, extract_user_ids)
+
+# 2-4 comments on other users' answers from each user
+
+def extract_answer_ids
+  Answer.all.map do |ans|
+    ans.id
+  end
+end
+
+def generate_comments_for_each_answer_from_user(num_of_comments, answers)
+
+  num_of_comments.times do
+
+    answers.each do |id|
+      Comment.create!(content: create_comment, user_id: id, commentable_id: other_users_id(id, Answer.all), commentable_type: Answer)
+    end
+  end
+
+end
+
+generate_comments_for_each_answer_from_user(rand_num, extract_answer_ids)
