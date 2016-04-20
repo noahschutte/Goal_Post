@@ -1,0 +1,32 @@
+
+<h3><%= @question.title %></h3>
+<p><%= @question.content %></p>
+<h6><%= @question.user.username %></h6>
+
+Comments
+<ul>
+  <% @question.comments.each do |comment| %>
+    <li>
+      <p><%= comment.content %></p>
+      <h6><%= comment.user.username %></h6>
+    </li>
+  <% end %>
+</ul>
+
+Answers
+<ul>
+  <% @question.answers.each do |answer| %>
+    <li>
+      <p><%= answer.content %></p>
+      <h6><%= answer.user.username %></h6>
+      <ul>
+        <% answer.comments.each do |comment| %>
+          <li>
+            <p><%= comment.content %></p>
+            <h6><%= comment.user.username %></h6>
+          </li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
+</ul>

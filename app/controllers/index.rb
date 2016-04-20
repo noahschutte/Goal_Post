@@ -1,5 +1,3 @@
 get '/' do
-  # binding.pry
-  redirect '/questions/index'
-  # erb :index
+  redirect '/question/index'
 end
