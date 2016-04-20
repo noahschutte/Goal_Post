@@ -1,0 +1,12 @@
+<!-- users/show.erb page without content -->
+
+<h2>Welcome back, <%= @user.username %>!</h2>
+
+<h4>Email on file: <%= @user.email %></h4>
+
+<h3> My Questions </h3>
+<ul>
+<% @user.questions.each do |question| %>
+  <li><a href="/question/<%= question.id %>"><%= question.title %></a></li>
+<% end %>
+</ul>
