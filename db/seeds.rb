@@ -75,11 +75,11 @@ def extract_question_ids
 end
 
 
-def generate_comments_for_each_question_from_user(num_of_comments, question_ids)
+def generate_comments_for_each_question_from_user(num_of_comments, questions)
 
   num_of_comments.times do
 
-    question_ids.each do |id|
+    questions.each do |id|
       Comment.create!(content: create_comment, user_id: id, commentable_id: other_users_id(id, Question.all), commentable_type: Question)
     end
   end
@@ -89,5 +89,27 @@ generate_comments_for_each_question_from_user(rand_num, extract_question_ids)
 
 # 2-4 comments on other users' answers from each user
 
+def extract_user_ids
+  User.all.map do |user|
+    user.id
+  end
+end
 
+def create_answer
+  Faker::Lorem.sentence(3)
+end
 
+def generate_answers_for_other_user(num_of_answers, questions, users)
+
+  num_of_answers.times do
+
+    questions.each do |q_id|
+
+      users.each do |u_id|
+        Answer.create!(content: create_answer, question_id: q_id, user_id: other_users_id(u_id, User.all), best_answer: false)
+      end
+    end
+  end
+end
+
+generate_answers_for_other_user(rand_num, extract_question_ids, extract_user_ids)
