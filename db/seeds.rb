@@ -1,7 +1,7 @@
 
 require 'faker'
-
-#Users
+require 'pry'
+# 5 users
 username1 = Faker::Name.name
 email1 = Faker::Internet.email(username1)
 
@@ -24,7 +24,7 @@ user4 = User.create!(username: username4, email: email4, password: Faker::Intern
 user5 = User.create!(username: username5, email: email5, password: Faker::Internet.password) #has user_id = 5
 
 
-#Questions from User
+# 2-4 questions from each user
 
 # generates random array of four words
 # each word in array is capitalised
@@ -52,6 +52,42 @@ end
 
 generate_questions_for_users(rand_num, [1, 2, 3, 4, 5])
 
+
+# 2-4 comments on other users' questions from each user
+
+def create_comment
+  Faker::Lorem.sentences
+end
+
+def other_users_id(your_id, all_users)
+  answer = rand(all_users.length) + 1
+  if answer == your_id
+    other_users_id(your_id, all_users)
+  else
+    return answer
+  end
+end
+
+def extract_question_ids
+  Question.all.map do |ques|
+    ques.id
+  end
+end
+
+
+def generate_comments_for_each_question_from_user(num_of_comments, question_ids)
+
+  num_of_comments.times do
+
+    question_ids.each do |id|
+      Comment.create!(content: create_comment, user_id: id, commentable_id: other_users_id(id, Question.all), commentable_type: Question)
+    end
+  end
+end
+
+generate_comments_for_each_question_from_user(rand_num, extract_question_ids)
+
+# 2-4 comments on other users' answers from each user
 
 
 
