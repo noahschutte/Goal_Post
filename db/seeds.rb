@@ -30,6 +30,12 @@ user5 = User.create!(username: username5, email: email5, password: Faker::Intern
 # each word in array is capitalised
 # Each index inside of the array is combine with space between each word
 
+def extract_user_ids
+  User.all.map do |user|
+    user.id
+  end
+end
+
 def create_title
   Faker::Lorem.words(4).map!{|word| word.capitalize}.join(' ')
 end
@@ -80,7 +86,7 @@ def generate_comments_for_each_question_from_user(num_of_comments, questions)
   num_of_comments.times do
 
     questions.each do |id|
-      Comment.create!(content: create_comment, user_id: id, commentable_id: other_users_id(id, Question.all), commentable_type: Question)
+      Comment.create!(content: create_comment, user_id: other_users_id(rand(1..5), extract_user_ids), commentable_id: other_users_id(id, Question.all), commentable_type: Question)
     end
   end
 end
@@ -89,11 +95,7 @@ generate_comments_for_each_question_from_user(rand_num, extract_question_ids)
 
 # 2-4 answers on other users' questions from each user
 
-def extract_user_ids
-  User.all.map do |user|
-    user.id
-  end
-end
+
 
 def create_answer
   Faker::Lorem.sentence(3)
@@ -127,10 +129,9 @@ def generate_comments_for_each_answer_from_user(num_of_comments, answers)
   num_of_comments.times do
 
     answers.each do |id|
-      Comment.create!(content: create_comment, user_id: id, commentable_id: other_users_id(id, Answer.all), commentable_type: Answer)
+      Comment.create!(content: create_comment, user_id: rand(1..5), commentable_id: other_users_id(id, Answer.all), commentable_type: Answer)
     end
   end
-
 end
 
 generate_comments_for_each_answer_from_user(rand_num, extract_answer_ids)
