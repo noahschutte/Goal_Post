@@ -1,0 +1,55 @@
+#nav-home{
+  position: relative;
+  margin: 0 auto;
+  z-index: 9999;
+  text-align: center;
+  padding: 20px;
+  margin: 20px;
+}
+
+h3{
+  margin: 0 auto;
+  text-align: center;
+}
+
+div{
+  border: 1px black solid;
+}
+
+li{
+  list-style: none;
+}
+
+.question-block{
+  display: -webkit-flex;
+  display: flex;
+  clear: both;
+}
+
+.vote-block{
+  -webkit-flex: initial;
+          flex: initial;
+  float: left;
+}
+
+.upvote-block{}
+
+.downvote-block{}
+
+.sum-block{
+  -webkit-flex: none;
+          flex: none;
+  position: relative;
+  float: left;
+  height: 72px;
+  width: 72px;
+  text-align: center;
+  border-radius: 100%;
+}
+
+.title-block{
+  position: relative;
+  float: right;
+  -webkit-flex: 3;
+          flex: 3;
+  }
