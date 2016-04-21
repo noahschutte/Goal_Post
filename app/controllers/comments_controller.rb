@@ -1,6 +1,10 @@
 get '/questions/:id/comments/new' do
-  @question = Question.find_by(id: params[:id])
-  erb :'/comments/new'
+  if logged_in?
+    @question = Question.find_by(id: params[:id])
+    erb :'/comments/new'
+  else
+    redirect '/login'
+  end
 end
 
 post '/questions/:id/comments' do
@@ -15,8 +19,12 @@ post '/questions/:id/comments' do
 end
 
 get '/answers/:id/comments/new' do
-  @answer = Answer.find_by(id: params[:id])
-  erb :'/comments/new_answer_comment'
+  if logged_in?
+    @answer = Answer.find_by(id: params[:id])
+    erb :'/comments/new_answer_comment'
+  else
+    redirect '/login'
+  end
 end
 
 post '/answers/:id/comments' do

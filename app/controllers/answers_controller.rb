@@ -1,6 +1,10 @@
 get '/questions/:id/answers/new' do
-  @question = Question.find_by(id: params[:id])
-  erb :'/answers/new'
+  if logged_in?
+    @question = Question.find_by(id: params[:id])
+    erb :'/answers/new'
+  else
+    redirect '/login'
+  end
 end
 
 post '/questions/:id/answers' do
