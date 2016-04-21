@@ -12,6 +12,10 @@ Comments
     </li>
   <% end %>
 </ul>
+<a href="/questions/<%=@question.id%>/comments/new">Add a comment</a>
+
+<br>
+<br>
 
 Answers
 <ul>
@@ -28,5 +32,11 @@ Answers
         <% end %>
       </ul>
     </li>
+<a href="/answers/<%=answer.id%>/comments/new">Comment on this answer</a>
   <% end %>
 </ul>
+
+<br>
+<br>
+
+<a href="/questions/<%=@question.id%>/answers/new">Answer this question!</a>

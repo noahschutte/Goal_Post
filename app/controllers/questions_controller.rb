@@ -8,8 +8,13 @@ get '/questions/new' do
 end
 
 post '/questions' do
-  binding.pry
-  @new_question = Question.create(params)
+  @user = User.find_by(id: session[:user_id])
+  @new_question = Question.new(title: params[:title], content: params[:content], user_id: @user.id)
+  if @new_question.save
+    redirect "/questions/#{@new_question.id}"
+  else
+    erb :'/questions/new'
+  end
 end
 
 get '/questions/:id' do
