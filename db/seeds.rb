@@ -62,7 +62,7 @@ generate_questions_for_users(rand_num, [1, 2, 3, 4, 5])
 # 2-4 comments on other users' questions from each user
 
 def create_comment
-  Faker::Lorem.sentences
+  Faker::Hipster.sentence
 end
 
 def other_users_id(your_id, all_users)
@@ -135,3 +135,58 @@ def generate_comments_for_each_answer_from_user(num_of_comments, answers)
 end
 
 generate_comments_for_each_answer_from_user(rand_num, extract_answer_ids)
+
+def vote_value
+  [-1,1].sample
+end
+
+# def random_question_id_from_user(user_id, question_id)
+
+#   if question_id == user_id
+#     random_question_id_from_user
+#   else
+#     return question_id
+#   end
+# end
+
+
+
+# def random_question_id
+#   all_questions = (1..(Question.count).to_a)
+#   question_id = all_questions.sample
+#   return question_id
+# end
+
+def generate_vote_for_question_from_each_user(users)
+  Question.all.each do |question|
+    users.each do |user|
+      Vote.create!(value: vote_value, user_id: user, votable_type: Question, votable_id: question.id)
+    end
+  end
+end
+
+generate_vote_for_question_from_each_user([1,2,3,4,5])
+
+
+
+def generate_vote_for_answer_from_each_user(users)
+  Answer.all.each do |answer|
+    users.each do |user|
+      Vote.create!(value: vote_value, user_id: user, votable_type: Answer, votable_id: answer.id)
+    end
+  end
+end
+
+generate_vote_for_answer_from_each_user([1,2,3,4,5])
+
+
+
+def generate_vote_for_comment_from_each_user(users)
+  Comment.all.each do |comment|
+    users.each do |user|
+      Vote.create!(value: vote_value, user_id: user, votable_type: Comment, votable_id: comment.id)
+    end
+  end
+end
+
+generate_vote_for_comment_from_each_user([1,2,3,4,5])
