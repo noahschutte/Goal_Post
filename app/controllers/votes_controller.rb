@@ -1,4 +1,4 @@
-post '/questions/:id/votes' do
+post '/votes' do
 
   if logged_in?
     if vote_exists?(session[:user_id], params[:votable_type], params[:votable_id])
