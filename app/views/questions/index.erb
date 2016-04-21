@@ -5,10 +5,28 @@
   <div class="question-block">
     <li>
       <div class="vote-block">
-        <div class="upvote-block"><img src="/image/upvote.png"></div>
-        <div class="downvote-block"><img src="/image/downvote.png"></div>
+
+
+
+
+        <form class="upvote-block" action='/votes' method='post'>
+
+        <input type="image" src="/image/upvote.png">
+        <input type='hidden' name='value' value=1 >
+        <input type='hidden' name='question_id' value=<%=question.id%>>
+        <input type='hidden' name='votable_type' value=Question>
+        </form>
+
+
+        <form class="downvote-block" action='/votes' method='post'>
+          <input type='image' src="/image/downvote.png">
+          <input type='hidden' name='value' value=-1>
+          <input type='hidden' name='question_id' value=<%=question.id%>>
+          <input type='hidden' name='votable_type' value=Question>
+        </form>
+
       </div>
-      <div class="sum-block">#?</div>
+      <div class="sum-block"><%= question.votes.reduce(0) { |sum, vote| sum + vote.value } %></div>
       <div class="title-block"><a href="/questions/<%= question.id %>"><%= question.title %></a></div>
     </li>
   </div>

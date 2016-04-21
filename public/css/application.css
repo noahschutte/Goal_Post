@@ -12,9 +12,9 @@ h3{
   text-align: center;
 }
 
-div{
+/*div{
   border: 1px black solid;
-}
+}*/
 
 li{
   list-style: none;
@@ -39,12 +39,13 @@ li{
 .sum-block{
   -webkit-flex: none;
           flex: none;
-  position: relative;
+  /*position: relative;*/
   float: left;
   height: 72px;
   width: 72px;
   text-align: center;
   border-radius: 100%;
+  line-height: 72px;
 }
 
 .title-block{
@@ -52,4 +53,5 @@ li{
   float: right;
   -webkit-flex: 3;
           flex: 3;
+  line-height: 72px;
   }
