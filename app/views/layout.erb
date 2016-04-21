@@ -18,7 +18,7 @@
   <title>Goal Post</title>
 </head>
 <body>
-  <h1>Goal Post</h1>
+  <h1><a href='/'>Goal Post</a></h1>
   <nav>
     <ul>
       <% if logged_in? %>
@@ -27,6 +27,7 @@
           <input type="hidden" name="_method" value="delete">
           <input type="submit" value="Logout">
         </form>
+        <li><a href="/questions/new">Post a Goal</a></li>
       <% else %>
         <li><a href='/login'>Login</a></li>
         <li><a href='/users/new'>Create Account</a></li>
