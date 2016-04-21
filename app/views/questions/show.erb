@@ -1,5 +1,21 @@
-
+<div class="vote-block">
+  <form class="upvote-block" action='/votes' method='post'>
+    <input type="image" src="/image/upvote.png">
+    <input type='hidden' name='value' value=1 >
+    <input type='hidden' name='votable_id' value=<%=params[:id]%>>
+    <input type='hidden' name='votable_type' value=Question>
+  </form>
+  <form class="downvote-block" action='/votes' method='post'>
+    <input type='image' src="/image/downvote.png">
+    <input type='hidden' name='value' value=-1 >
+    <input type='hidden' name='votable_id' value=<%=params[:id]%>>
+    <input type='hidden' name='votable_type' value=Question>
+  </form>
+</div>
+<div class="question-block">
+  <div class="sum-block"><%= @question.votes.reduce(0) { |sum, vote| sum + vote.value } %></div>
 <h3><%= @question.title %></h3>
+</div>
 <p><%= @question.content %></p>
 <h6><%= @question.user.username %></h6>
 
@@ -7,6 +23,21 @@ Comments
 <ul>
   <% @question.comments.each do |comment| %>
     <li>
+       <div class="vote-block">
+        <form class="upvote-block" action='/votes' method='post'>
+          <input type="image" src="/image/upvote.png">
+          <input type='hidden' name='value' value=1 >
+          <input type='hidden' name='votable_id' value=<%=comment.id%>>
+          <input type='hidden' name='votable_type' value=Comment>
+        </form>
+        <form class="downvote-block" action='/votes' method='post'>
+          <input type='image' src="/image/downvote.png">
+          <input type='hidden' name='value' value=-1 >
+          <input type='hidden' name='votable_id' value=<%=comment.id%>>
+          <input type='hidden' name='votable_type' value=Comment>
+        </form>
+      </div>
+      <div class="sum-block"><%= comment.votes.reduce(0) { |sum, vote| sum + vote.value } %></div>
       <p><%= comment.content %></p>
       <h6><%= comment.user.username %></h6>
     </li>
@@ -18,14 +49,46 @@ Comments
 <br>
 
 Answers
+<br><br>
+<a href="/questions/<%=@question.id%>/answers/new">Answer this question!</a>
 <ul>
   <% @question.answers.each do |answer| %>
     <li>
+      <div class="vote-block">
+        <form class="upvote-block" action='/votes' method='post'>
+          <input type="image" src="/image/upvote.png">
+          <input type='hidden' name='value' value=1 >
+          <input type='hidden' name='votable_id' value=<%=answer.id%>>
+          <input type='hidden' name='votable_type' value=Answer>
+        </form>
+        <form class="downvote-block" action='/votes' method='post'>
+          <input type='image' src="/image/downvote.png">
+          <input type='hidden' name='value' value=-1 >
+          <input type='hidden' name='votable_id' value=<%=answer.id%>>
+          <input type='hidden' name='votable_type' value=Answer>
+        </form>
+      </div>
+      <div class="sum-block"><%= answer.votes.reduce(0) { |sum, vote| sum + vote.value } %></div>
       <p><%= answer.content %></p>
       <h6><%= answer.user.username %></h6>
       <ul>
         <% answer.comments.each do |comment| %>
           <li>
+            <div class="vote-block">
+              <form class="upvote-block" action='/votes' method='post'>
+                <input type="image" src="/image/upvote.png">
+                <input type='hidden' name='value' value=1 >
+                <input type='hidden' name='votable_id' value=<%=comment.id%>>
+                <input type='hidden' name='votable_type' value=Comment>
+              </form>
+              <form class="downvote-block" action='/votes' method='post'>
+                <input type='image' src="/image/downvote.png">
+                <input type='hidden' name='value' value=-1 >
+                <input type='hidden' name='votable_id' value=<%=comment.id%>>
+                <input type='hidden' name='votable_type' value=Comment>
+              </form>
+            </div>
+            <div class="sum-block"><%= comment.votes.reduce(0) { |sum, vote| sum + vote.value } %></div>
             <p><%= comment.content %></p>
             <h6><%= comment.user.username %></h6>
           </li>
