@@ -4,11 +4,11 @@ post '/votes' do
     if vote_exists?(session[:user_id], params[:votable_type], params[:votable_id])
       vote = find_vote(session[:user_id], params[:votable_type], params[:votable_id])
       vote.update_attributes(value: params[:value])
-      redirect '/'
+      redirect "/questions/#{vote.votable_id}"
     else
       vote = Vote.new(votable_id: params[:votable_id], value: params[:value], votable_type: params[:votable_type], user_id: session[:user_id])
       if vote.save
-        redirect '/'
+        redirect "/questions/#{vote.votable_id}"
       end
     end
   else
