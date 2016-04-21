@@ -2,8 +2,15 @@
 
 <ul>
   <% @questions.each do |question| %>
+  <div class="question-block">
     <li>
-      <a href="/questions/<%= question.id %>"><%= question.title %></a>
+      <div class="vote-block">
+        <div class="upvote-block"><img src="/image/upvote.png"></div>
+        <div class="downvote-block"><img src="/image/downvote.png"></div>
+      </div>
+      <div class="sum-block">#?</div>
+      <div class="title-block"><a href="/questions/<%= question.id %>"><%= question.title %></a></div>
     </li>
+  </div>
   <% end %>
 </ul>
