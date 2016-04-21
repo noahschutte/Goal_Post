@@ -1,4 +1,4 @@
-post '/votes' do
+post '/questions/:id/votes' do
 
   if logged_in?
     if vote_exists?(session[:user_id], params[:votable_type], params[:votable_id])
@@ -15,6 +15,18 @@ post '/votes' do
     redirect '/login'
   end
 end
+
+# post '/answers/:id/votes' do
+#   ans = Answer.find(params[:id])
+#   vote = ans.votes.build(params)
+
+#   if vote.save
+#           redirect "/questions/#{vote.votable_id}"
+#   else
+#       redirect "/questions/#{vote.votable_id}"
+#   end
+
+# end
 
   #  #AJAX!!!!!!!!
 
