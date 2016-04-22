@@ -34,10 +34,6 @@ h3{
   text-align: center;
 }
 
-p{
-
-}
-
 .total{
   background-color: #e6e6e6;
   border: 1px solid #808080;
@@ -99,3 +95,11 @@ li{
           flex: 3;
   line-height: 72px;
   }
+
+.answer-form{
+  display: none;
+}
+
+.comment-on-answer-form{
+  display: none;
+}

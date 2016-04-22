@@ -1,14 +1,7 @@
 get '/questions/:id/answers/new' do
+  @question = Question.find_by(id: params[:id])
   if logged_in?
-
-  if request.xhr?
-    erb :'_new_answer_form.erb'
-
-  else
-
-  end
-    @question = Question.find_by(id: params[:id])
-    erb :'/answers/new'
+    redirect "/questions/#{@question.id}"
   else
     redirect '/login'
   end
