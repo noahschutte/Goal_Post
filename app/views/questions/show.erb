@@ -1,25 +1,28 @@
-<div class="vote-block">
-  <form class="upvote-block" action='/votes' method='post'>
-    <input type="image" src="/image/upvote.png">
-    <input type='hidden' name='value' value=1 >
-    <input type='hidden' name='votable_id' value=<%=params[:id]%>>
-    <input type='hidden' name='votable_type' value=Question>
-  </form>
-  <form class="downvote-block" action='/votes' method='post'>
-    <input type='image' src="/image/downvote.png">
-    <input type='hidden' name='value' value=-1 >
-    <input type='hidden' name='votable_id' value=<%=params[:id]%>>
-    <input type='hidden' name='votable_type' value=Question>
-  </form>
+<div class="total">
+  <div class="vote-block">
+    <form class="upvote-block" action='/votes' method='post'>
+      <input type="image" src="/image/upvote.png">
+      <input type='hidden' name='value' value=1 >
+      <input type='hidden' name='votable_id' value=<%=params[:id]%>>
+      <input type='hidden' name='votable_type' value=Question>
+    </form>
+    <form class="downvote-block" action='/votes' method='post'>
+      <input type='image' src="/image/downvote.png">
+      <input type='hidden' name='value' value=-1 >
+      <input type='hidden' name='votable_id' value=<%=params[:id]%>>
+      <input type='hidden' name='votable_type' value=Question>
+    </form>
+  </div>
+  <div class="question-block">
+    <div class="sum-block"><%= @question.votes.reduce(0) { |sum, vote| sum + vote.value } %></div>
+  <h3><%= @question.title %></h3>
+  </div>
+  <p><%= @question.content %></p>
+  <h6><%= @question.user.username %></h6>
 </div>
-<div class="question-block">
-  <div class="sum-block"><%= @question.votes.reduce(0) { |sum, vote| sum + vote.value } %></div>
-<h3><%= @question.title %></h3>
-</div>
-<p><%= @question.content %></p>
-<h6><%= @question.user.username %></h6>
 
-Comments
+<h2>Comments</h2>
+<div class="total">
 <ul>
   <% @question.comments.each do |comment| %>
     <li>
@@ -46,14 +49,16 @@ Comments
     </li>
   <% end %>
 </ul>
+</div>
 <a href="/questions/<%=@question.id%>/comments/new">Add a comment</a>
 
 <br>
 <br>
 
-Answers
+<h2>Answers</h2>
 <br><br>
 <a class='new_answer_form' href="/questions/<%=@question.id%>/answers/new">Answer this question!</a>
+
 <ul id='create_new_answer'>
   <% @question.answers.each do |answer| %>
     <li>

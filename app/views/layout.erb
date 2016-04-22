@@ -11,6 +11,7 @@
     application.css is where you put your styles
   -->
   <link rel="stylesheet" href="/css/application.css">
+<link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
 
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
   <script src="/js/application.js"></script>
@@ -19,16 +20,16 @@
 </head>
 <body>
   <div id="nav-home">
-  <h1><a href='/'>Goal Post</a></h1>
+  <h1 id="home-title"><a href='/'>Goal Post</a></h1>
     <nav>
       <ul class="navbar-container">
         <% if logged_in? %>
           <li><a href="/users/<%= session[:user_id] %>">User Profile</a></li>
+          <li><a id="new-question-form" href="/questions/new">Post a Goal</a></li>
           <form action="/logout" method="post">
             <input type="hidden" name="_method" value="delete">
             <input type="submit" value="Logout">
           </form>
-          <li><a id="new-question-form" href="/questions/new">Post a Goal</a></li>
           <div id="future-form"></div>
         <% else %>
           <li><a href='/login'>Login</a></li>
