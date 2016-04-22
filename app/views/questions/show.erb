@@ -58,13 +58,10 @@ Answers
   <% @question.answers.each do |answer| %>
     <li>
 
-
-
       <form class="best_answer" action='/answers/best' method='post'>
         <input type="image" src="/image/best_answer.png">
+        <input type="hidden" name="answer_id" value=<%= answer.id %>
       </form>
-
-
 
       <div class="vote-block">
         <form class="upvote-block" action='/votes' method='post'>

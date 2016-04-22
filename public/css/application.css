@@ -35,6 +35,10 @@ li{
 .best_answer{
   float: left;
   position: relative;
+  opacity: 0.0;
+}
+.best_answer:hover{
+  opacity: 1.0;
 }
 
 .upvote-block{}
