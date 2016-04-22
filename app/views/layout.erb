@@ -21,14 +21,15 @@
   <div id="nav-home">
   <h1><a href='/'>Goal Post</a></h1>
     <nav>
-      <ul>
+      <ul class="navbar-container">
         <% if logged_in? %>
           <li><a href="/users/<%= session[:user_id] %>">User Profile</a></li>
           <form action="/logout" method="post">
             <input type="hidden" name="_method" value="delete">
             <input type="submit" value="Logout">
           </form>
-          <li><a href="/questions/new">Post a Goal</a></li>
+          <li><a id="new-question-form" href="/questions/new">Post a Goal</a></li>
+          <div id="future-form"></div>
         <% else %>
           <li><a href='/login'>Login</a></li>
           <li><a href='/users/new'>Create Account</a></li>

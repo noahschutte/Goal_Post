@@ -4,7 +4,11 @@ get '/questions/index' do
 end
 
 get '/questions/new' do
-  erb :'/questions/new'
+  if request.xhr?
+    erb :'/questions/_new_question_form', layout: false
+  else
+    erb :'/questions/new'
+  end
 end
 
 post '/questions' do
