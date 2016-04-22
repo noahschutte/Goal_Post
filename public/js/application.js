@@ -13,7 +13,7 @@ $(document).ready(function() {
 
   $('#new-comment-on-question').on('click', function(event){
     event.preventDefault();
-    $target = $(event.target);
+    var $target = $(event.target);
     $.ajax({
       url: $target.attr('href'),
       method: 'get'
@@ -28,11 +28,39 @@ $(document).ready(function() {
   });
 
   $('.new-comment-on-answer').on('click', function(event){
-
     event.preventDefault();
-    $target = $(event.target);
+    var $target = $(event.target);
     $target.next().show();
   });
+
+  $('.upvote-block').on('submit', function(event){
+    event.preventDefault();
+    var $target = $(event.target);
+    $.ajax({
+      method: 'post',
+      url: '/votes',
+      data: $target.serialize(),
+      dataType: 'html'
+    }).done(function(response){
+      $target.parent().next().html(response)
+    });
+  });
+
+    $('.downvote-block').on('submit', function(event){
+    event.preventDefault();
+    var $target = $(event.target);
+    $.ajax({
+      method: 'post',
+      url: '/votes',
+      data: $target.serialize(),
+      dataType: 'html'
+    }).done(function(response){
+      $target.parent().next().html(response)
+    });
+  });
+
+
+
 
 });
 
