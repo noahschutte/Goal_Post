@@ -65,11 +65,6 @@
   <% @question.answers.each do |answer| %>
     <li>
 
-      <form class="best_answer" action='/answers/best' method='post'>
-        <input type="image" src="/image/best_answer.png">
-        <input type="hidden" name="answer_id" value=<%= answer.id %>
-      </form>
-
       <div class="vote-block">
         <form class="upvote-block" action='/votes' method='post'>
           <input type="image" src="/image/upvote.png">
@@ -77,7 +72,6 @@
           <input type='hidden' name='votable_id' value=<%=answer.id%>>
           <input type='hidden' name='votable_type' value=Answer>
           <input type='hidden' name='question_id' value=<%= @question.id%>>
-
         </form>
         <form class="downvote-block" action='/votes' method='post'>
           <input type='image' src="/image/downvote.png">
@@ -87,6 +81,20 @@
           <input type='hidden' name='question_id' value=<%= @question.id%>>
         </form>
       </div>
+
+      <% if answer.best_answer == true %>
+        <form class="best_answer" id="chosen_best_answer">
+          <input type="image" src="/image/best_answer.png">
+        </form>
+      <% else %>
+        <!-- <% answer.best_answer = false %> -->
+        <form class="best_answer" action='/answers/best' method='post'>
+          <input type="image" src="/image/best_answer.png">
+          <input type="hidden" name="answer_id" value=<%= answer.id %>>
+          <input type="hidden" name="question" value=<%= @question.user_id %>>
+        </form>
+      <% end %>
+
       <div class="sum-block"><%= answer.votes.reduce(0) { |sum, vote| sum + vote.value } %></div>
       <p><%= answer.content %></p>
       <h6><%= answer.user.username %></h6>
