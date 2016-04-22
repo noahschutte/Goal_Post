@@ -26,8 +26,8 @@
 <h2>Comments</h2>
 <div class="total">
 <ul>
-  <% @question.comments.each do |comment| %>
-    <li>
+  <li>
+    <% @question.comments.each do |comment| %>
        <div class="vote-block">
         <form class="upvote-block" action='/votes' method='post'>
           <input type="image" src="/image/upvote.png">
@@ -48,11 +48,12 @@
       <div class="sum-block"><%= comment.votes.reduce(0) { |sum, vote| sum + vote.value } %></div>
       <p><%= comment.content %></p>
       <h6><%= comment.user.username %></h6>
-    </li>
-  <% end %>
+    <% end %>
+  </li>
 </ul>
 </div>
-<a href="/questions/<%=@question.id%>/comments/new">Add a comment</a>
+<div id="future-comment-on-ques"></div>
+<a id="new-comment-on-question" href="/questions/<%=@question.id%>/comments/new">Add a comment</a>
 
 <br>
 <br>
@@ -61,6 +62,11 @@
 <br><br>
 <a class='new_answer_form' href="/questions/<%=@question.id%>/answers/new">Answer this question!</a>
 
+<form class="answer-form" action="/questions/:id" method="post">
+Answer: <input type="text" name="content"><br>
+<input type="hidden" name="question_id" value="<%= @question.id %>">
+<input type="submit" value="Post answer">
+</form>
 <ul id='create_new_answer'>
   <% @question.answers.each do |answer| %>
     <li>
@@ -122,13 +128,14 @@
             <h6><%= comment.user.username %></h6>
           </li>
         <% end %>
+        <a class='new-comment-on-answer' href="/answers/<%=answer.id%>/comments/new">Comment on this answer</a>
+        <form class='comment-on-answer-form' action="/answers/:id/comments" method="post">
+          Content: <input type="text" name="content"><br>
+          <input type="hidden" name="answer_id" value="<%= answer.id %>">
+          <input type="submit" value="Post comment">
+        </form>
       </ul>
     </li>
-<a href="/answers/<%=answer.id%>/comments/new">Comment on this answer</a>
   <% end %>
 </ul>
 
-<br>
-<br>
-
-<a href="/questions/<%=@question.id%>/answers/new">Answer this question!</a>

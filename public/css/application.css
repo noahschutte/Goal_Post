@@ -43,10 +43,6 @@ h3{
   text-align: center;
 }
 
-p{
-
-}
-
 .total{
   background-color: #e6e6e6;
   border: 1px solid #808080;
@@ -150,4 +146,12 @@ li{
   http://www.color-hex.com/color-palette/17849
 
   */
+
+.answer-form{
+  display: none;
+}
+
+.comment-on-answer-form{
+  display: none;
+}
 
