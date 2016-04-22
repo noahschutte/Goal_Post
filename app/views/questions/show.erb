@@ -63,9 +63,9 @@
 <a class='new_answer_form' href="/questions/<%=@question.id%>/answers/new">Answer this question!</a>
 
 <form class="answer-form" action="/questions/:id" method="post">
-Answer: <input type="text" name="content"><br>
-<input type="hidden" name="question_id" value="<%= @question.id %>">
-<input type="submit" value="Post answer">
+  Answer: <input type="text" name="content"><br>
+  <input type="hidden" name="question_id" value="<%= @question.id %>">
+  <input type="submit" value="Post answer">
 </form>
 <ul id='create_new_answer'>
   <% @question.answers.each do |answer| %>

@@ -7,7 +7,7 @@ get '/questions/:id/answers/new' do
   end
 end
 
-post '/questions/:id/answers' do
+post '/questions/:id' do
   @user = User.find_by(id: session[:user_id])
   @question = Question.find_by(id: params[:question_id])
   answer = Answer.new(content: params[:content], user_id: @user.id, question_id: @question.id)
