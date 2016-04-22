@@ -1,14 +1,14 @@
 <div class="total">
   <div class="vote-block">
     <form class="upvote-block" action='/votes' method='post'>
-      <input type="image" src="/image/upvote.png">
+      <input class='vote-image' type="image" src="/image/upvote.png">
       <input type='hidden' name='value' value=1 >
       <input type='hidden' name='votable_id' value=<%=params[:id]%>>
       <input type='hidden' name='votable_type' value=Question>
       <input type='hidden' name='question_id' value=<%=params[:id]%>>
     </form>
     <form class="downvote-block" action='/votes' method='post'>
-      <input type='image' src="/image/downvote.png">
+      <input class='vote-image' type='image' src="/image/downvote.png">
       <input type='hidden' name='value' value=-1 >
       <input type='hidden' name='votable_id' value=<%=params[:id]%>>
       <input type='hidden' name='votable_type' value=Question>
@@ -30,7 +30,7 @@
     <li>
        <div class="vote-block">
         <form class="upvote-block" action='/votes' method='post'>
-          <input type="image" src="/image/upvote.png">
+          <input class='vote-image' type="image" src="/image/upvote.png">
           <input type='hidden' name='value' value=1 >
           <input type='hidden' name='votable_id' value=<%=comment.id%>>
           <input type='hidden' name='votable_type' value=Comment>
@@ -38,7 +38,7 @@
 
         </form>
         <form class="downvote-block" action='/votes' method='post'>
-          <input type='image' src="/image/downvote.png">
+          <input class='vote-image' type='image' src="/image/downvote.png">
           <input type='hidden' name='value' value=-1 >
           <input type='hidden' name='votable_id' value=<%=comment.id%>>
           <input type='hidden' name='votable_type' value=Comment>
@@ -66,13 +66,13 @@
     <li>
 
       <form class="best_answer" action='/answers/best' method='post'>
-        <input type="image" src="/image/best_answer.png">
-        <input type="hidden" name="answer_id" value=<%= answer.id %>
+        <input class='best_answer_button' type="image" src="/image/best_answer.png">
+        <input type="hidden" name="answer_id" value=<%= answer.id %>>
       </form>
 
       <div class="vote-block">
         <form class="upvote-block" action='/votes' method='post'>
-          <input type="image" src="/image/upvote.png">
+          <input class='vote-image' type="image" src="/image/upvote.png">
           <input type='hidden' name='value' value=1 >
           <input type='hidden' name='votable_id' value=<%=answer.id%>>
           <input type='hidden' name='votable_type' value=Answer>
@@ -80,7 +80,7 @@
 
         </form>
         <form class="downvote-block" action='/votes' method='post'>
-          <input type='image' src="/image/downvote.png">
+          <input class='vote-image' type='image' src="/image/downvote.png">
           <input type='hidden' name='value' value=-1 >
           <input type='hidden' name='votable_id' value=<%=answer.id%>>
           <input type='hidden' name='votable_type' value=Answer>
@@ -90,19 +90,19 @@
       <div class="sum-block"><%= answer.votes.reduce(0) { |sum, vote| sum + vote.value } %></div>
       <p><%= answer.content %></p>
       <h6><%= answer.user.username %></h6>
-      <ul>
+      <ul class='total'>
         <% answer.comments.each do |comment| %>
           <li>
             <div class="vote-block">
               <form class="upvote-block" action='/votes' method='post'>
-                <input type="image" src="/image/upvote.png">
+                <input class='vote-image' type="image" src="/image/upvote.png">
                 <input type='hidden' name='value' value=1 >
                 <input type='hidden' name='votable_id' value=<%=comment.id%>>
                 <input type='hidden' name='votable_type' value=Comment>
                 <input type='hidden' name='question_id' value=<%= @question.id%>>
               </form>
               <form class="downvote-block" action='/votes' method='post'>
-                <input type='image' src="/image/downvote.png">
+                <input class='vote-image' type='image' src="/image/downvote.png">
                 <input type='hidden' name='value' value=-1 >
                 <input type='hidden' name='votable_id' value=<%=comment.id%>>
                 <input type='hidden' name='votable_type' value=Comment>

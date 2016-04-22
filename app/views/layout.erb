@@ -19,9 +19,8 @@
   <title>Goal Post</title>
 </head>
 <body>
-  <div id="nav-home">
-  <h1 id="home-title"><a href='/'>Goal Post</a></h1>
-    <nav>
+
+<nav class='top-nav'>
       <ul class="navbar-container">
         <% if logged_in? %>
           <li><a href="/users/<%= session[:user_id] %>">User Profile</a></li>
@@ -37,7 +36,11 @@
         <% end %>
       </ul>
     </nav>
+
+  <div id="nav-home">
+    <h1 class="home-title"><a href='/'>Goal Post</a></h1>
   </div>
+
   <%= yield %>
 </body>
 </html>
