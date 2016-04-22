@@ -12,9 +12,9 @@ h3{
   text-align: center;
 }
 
-/*div{
-  border: 1px black solid;
-}*/
+/*div{*/
+  /*border: 1px black solid;*/
+/*}*/
 
 li{
   list-style: none;
@@ -30,6 +30,11 @@ li{
   -webkit-flex: initial;
           flex: initial;
   float: left;
+}
+
+.best_answer{
+  float: left;
+  position: relative;
 }
 
 .upvote-block{}
