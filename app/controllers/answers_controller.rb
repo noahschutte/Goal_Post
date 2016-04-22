@@ -19,5 +19,11 @@ post '/questions/:id/answers' do
 end
 
 post '/answers/best' do
-
+  if logged_in?
+    #the logged in user is also owner of the question
+      #reset all 'best_answer' column values for answers belonging to the question as false
+      #update the current chosen answer as 'true' for best answer
+  else
+    redirect '/login'
+  end
 end
