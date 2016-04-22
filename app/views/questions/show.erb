@@ -53,8 +53,8 @@ Comments
 
 Answers
 <br><br>
-<a href="/questions/<%=@question.id%>/answers/new">Answer this question!</a>
-<ul>
+<a class='new_answer_form' href="/questions/<%=@question.id%>/answers/new">Answer this question!</a>
+<ul id='create_new_answer'>
   <% @question.answers.each do |answer| %>
     <li>
 
