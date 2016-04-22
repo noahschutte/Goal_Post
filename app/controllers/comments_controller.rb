@@ -1,7 +1,11 @@
 get '/questions/:id/comments/new' do
+  @question = Question.find_by(id: params[:id])
   if logged_in?
-    @question = Question.find_by(id: params[:id])
-    erb :'/comments/new'
+    if request.xhr?
+      erb :'/comments/_new_question_comment', layout: false
+    else
+      erb :'/comments/new'
+    end
   else
     redirect '/login'
   end
