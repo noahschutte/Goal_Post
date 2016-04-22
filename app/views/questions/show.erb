@@ -57,6 +57,15 @@ Answers
 <ul>
   <% @question.answers.each do |answer| %>
     <li>
+
+
+
+      <form class="best_answer" action='/answers/best' method='post'>
+        <input type="image" src="/image/best_answer.png">
+      </form>
+
+
+
       <div class="vote-block">
         <form class="upvote-block" action='/votes' method='post'>
           <input type="image" src="/image/upvote.png">

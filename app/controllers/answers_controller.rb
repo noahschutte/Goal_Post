@@ -17,3 +17,7 @@ post '/questions/:id/answers' do
     erb :'/answers/new'
   end
 end
+
+post '/answers/best' do
+
+end
