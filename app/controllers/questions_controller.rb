@@ -16,7 +16,6 @@ post '/questions' do
   @user = User.find_by(id: session[:user_id])
   @new_question = Question.new(title: params[:title], content: params[:content], user_id: @user.id)
   if @new_question.save
-    binding.pry
     redirect "/questions/#{@new_question.id}"
   else
     erb :'/questions/new'
