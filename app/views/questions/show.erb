@@ -5,12 +5,14 @@
       <input type='hidden' name='value' value=1 >
       <input type='hidden' name='votable_id' value=<%=params[:id]%>>
       <input type='hidden' name='votable_type' value=Question>
+      <input type='hidden' name='question_id' value=<%=params[:id]%>>
     </form>
     <form class="downvote-block" action='/votes' method='post'>
       <input type='image' src="/image/downvote.png">
       <input type='hidden' name='value' value=-1 >
       <input type='hidden' name='votable_id' value=<%=params[:id]%>>
       <input type='hidden' name='votable_type' value=Question>
+      <input type='hidden' name='question_id' value=<%=params[:id]%>>
     </form>
   </div>
   <div class="question-block">
